@@ -2,7 +2,6 @@ import Actors from "@/components/Actors"
 import Ganres from "@/components/Ganres"
 import HeroText from "@/components/Hero"
 import NewTrMovies from "@/components/NewTrMovies"
-import Serials from "@/components/Serials"
 import Swager from "@/components/Swager"
 import Top from "@/components/Top"
 
@@ -12,7 +11,6 @@ const HomePage = () => {
       <Swager/>
       <Ganres/>
       <NewTrMovies/>
-      <Serials/>
       <Top/>
       <Actors/>
       <HeroText/>
