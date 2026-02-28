@@ -13,7 +13,7 @@ const categories = [
 
 export default function Categories() {
     return (
-        <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-6">
+        <section className="md:px-6 py-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {categories.map((cat) => (
                     <Link

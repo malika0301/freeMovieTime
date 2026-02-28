@@ -8,7 +8,7 @@ export default function Footer() {
         <footer className="bg-[#0f0f0f] text-gray-400 mt-10">
 
             {/* Main Footer */}
-            <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-12 flex flex-col gap-10">
+            <div className="md:px-6 py-12 flex flex-col gap-10">
 
                 {/* Top section */}
                 <div className="flex flex-col md:flex-row justify-between gap-10">
@@ -20,8 +20,8 @@ export default function Footer() {
                             <span className="bg-[#aaff00] text-black text-xs font-bold px-1.5 py-0.5 rounded ml-0.5">.net</span>
                         </Link>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            Filmlarga bo'lgan huquq ularning mualliflariga tegishli. Barcha filmlar faqat ma'lumot olish uchun mo'ljallangan.
-                            Foydalanuvchilar joylashtirgan noqonuniy materiallar uchun ma'muriyat javobgar emas! Har qanday film mualliflik huquqi
+                            Filmlarga bolgan huquq ularning mualliflariga tegishli. Barcha filmlar faqat malumot olish uchun moljallangan.
+                            Foydalanuvchilar joylashtirgan noqonuniy materiallar uchun mamuriyat javobgar emas! Har qanday film mualliflik huquqi
                             egasining iltimosiga binoan olib tashlanadi.
                         </p>
                     </div>
@@ -31,7 +31,7 @@ export default function Footer() {
 
                         {/* Yil bo'yicha seriallar */}
                         <div>
-                            <h4 className="text-white font-semibold mb-4">Yil bo'yicha seriallar</h4>
+                            <h4 className="text-white font-semibold mb-4">Yil boyicha seriallar</h4>
                             <div className="grid grid-cols-2 gap-x-6 gap-y-1.5">
                                 {serialYears.map((year) => (
                                     <Link key={year} href={`/serial/${year}`} className="text-sm text-gray-400 hover:text-white transition">
@@ -43,7 +43,7 @@ export default function Footer() {
 
                         {/* Yil bo'yicha kinolar */}
                         <div>
-                            <h4 className="text-white font-semibold mb-4">Yil bo'yicha kinolar</h4>
+                            <h4 className="text-white font-semibold mb-4">Yil boyicha kinolar</h4>
                             <div className="grid grid-cols-2 gap-x-6 gap-y-1.5">
                                 {kinoYears.map((year) => (
                                     <Link key={year} href={`/kino/${year}`} className="text-sm text-gray-400 hover:text-white transition">
@@ -69,7 +69,7 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div className="border-t border-[#1a1a1a]">
-                <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className="md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-500 text-center md:text-left">
                         © 2021-2026 Freekino.net — Barcha huquqlar himoyalangan.
                     </p>
