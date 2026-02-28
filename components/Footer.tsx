@@ -8,7 +8,7 @@ export default function Footer() {
         <footer className="bg-[#0f0f0f] text-gray-400 mt-10">
 
             {/* Main Footer */}
-            <div className="md:px-6 py-12 flex flex-col gap-10">
+            <div className="py-12 flex flex-col gap-10">
 
                 {/* Top section */}
                 <div className="flex flex-col md:flex-row justify-between gap-10">

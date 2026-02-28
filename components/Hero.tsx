@@ -1,6 +1,6 @@
 export default function HeroText() {
     return (
-        <section className="md:px-6 py-6">
+        <section className="py-6">
             <div className="bg-[#1c1c1c] rounded-lg px-5 md:px-8 py-6">
                 <h1 className="text-white font-bold text-lg md:text-xl mb-3">
                     Eng yangi tarjima kinolar uzbek tilida!

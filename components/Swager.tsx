@@ -2,7 +2,7 @@ import React from 'react'
 
 const Swager = () => {
   return (
-    <div>Swager</div>
+    <div className='text-white'>Swager</div>
   )
 }
 
