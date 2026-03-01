@@ -71,7 +71,7 @@ const Top = async() => {
      
 
   return (
-    <div className='container mx-auto'>
+    <div className=''>
           <div className='flex flex-col lg:flex-row gap-5'>
             <TopMovies  allKino={allKino} />
           <TopMultis allMulti={allMulti} />

@@ -8,12 +8,12 @@ import Top from "@/components/Top"
 const HomePage = () => {
   return (
     <main>
-      <Swager/>
-      <Ganres/>
-      <NewTrMovies/>
-      <Top/>
-      <Actors/>
-      <HeroText/>
+      <Swager />
+      <Ganres />
+      <NewTrMovies />
+      <Top />
+      <Actors />
+      <HeroText />
     </main>
   )
 }

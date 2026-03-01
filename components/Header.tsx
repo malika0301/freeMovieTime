@@ -10,8 +10,7 @@ export default function Header() {
 
     return (
         <header className="w-full bg-[#0f0f0f] border-b border-[#1a1a1a]">
-            <div className='container mx-auto'>
-                <div className=" px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+            <div className=" py-3 flex items-center justify-between gap-4">
 
                 {/* Logo */}
                 <Link href="/" className="flex items-center text-white font-bold text-xl tracking-tight shrink-0">
