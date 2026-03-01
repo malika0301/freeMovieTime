@@ -9,25 +9,25 @@ import { ActorsType } from '@/types/ActorsType';
 import { GenreType } from '@/types/GenreType';
 
 
-const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) => {
-    const { moviesId } = await params;
-    const movie = await getData({ url: `movie/${moviesId}` })
+const MoviePage = async ({ params }: { params: Promise<{ cartoonId: string }> }) => {
+    const { cartoonId } = await params;
+    const movie = await getData({ url: `movie/${cartoonId}` })
     const genres = await getData({ url: `genre` })
     const actors = await getData({ url: `actor` })
 
-    const genreMovies = await getData({ url: `movie_genre/${moviesId}` })
+    const genreMovies = await getData({ url: `movie_genre/${cartoonId}` })
     const movieGenreIds = genreMovies?.map((el: MovieGenreType) => {
-        if (el.movie_id === moviesId) {
+        if (el.movie_id === cartoonId) {
             return el.genre_id
         }
     })
     const genreNames = genres?.filter((el: GenreType) => movieGenreIds?.includes(el.id))
-    const actorMovies = await getData({ url: `movie_actor/${moviesId}` })
+    const actorMovies = await getData({ url: `movie_actor/${cartoonId}` })
     const movieActorIds = actorMovies?.map((el: MovieActorType) => {
-        if (el.movie_id === moviesId) {
+        if (el.movie_id === cartoonId) {
             return el.actor_id
         }
-    }) 
+    })
     const actorNames = actors?.filter((el: ActorsType) => movieActorIds?.includes(el.id))
     return (
         <main className="min-h-screen bg-[#0f0f0f] text-white">
@@ -37,7 +37,7 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
                 <div className="flex items-center gap-2 text-sm text-gray-400 mb-6 flex-wrap">
                     <Link href="/" className="hover:text-white transition">Bosh sahifa</Link>
                     <span>›</span>
-                    <Link href="/kino" className="hover:text-white transition">Tarjima kinolar</Link>
+                    <Link href="/kino" className="hover:text-white transition">Tarjima Multiklar</Link>
                     <span>›</span>
                     <span className="text-white">{movie?.title_uz}</span>
                 </div>
@@ -143,11 +143,11 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
                             <div className="flex items-center gap-4">
                                 <button className="flex items-center gap-1.5 text-gray-300 hover:text-white transition">
                                     <ThumbsUp size={18} />
-                                    <span className="text-sm">12</span>
+                                    <span className="text-sm">24</span>
                                 </button>
                                 <button className="flex items-center gap-1.5 text-gray-300 hover:text-white transition">
                                     <ThumbsDown size={18} />
-                                    <span className="text-sm">0</span>
+                                    <span className="text-sm">2</span>
                                 </button>
                             </div>
                             <div className="flex items-center gap-3">
