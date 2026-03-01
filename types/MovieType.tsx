@@ -1,4 +1,5 @@
 export interface MovieType {
+    id: string,
     title_uz: string,
     title_ru: string,
     title_en: string,

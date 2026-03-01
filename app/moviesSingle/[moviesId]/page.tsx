@@ -1,23 +1,33 @@
 import Link from 'next/link';
-import { Calendar, Clock, Globe, ThumbsUp, ThumbsDown, Play, Download } from 'lucide-react';
+import { Calendar, Clock, Globe, ThumbsUp, ThumbsDown, Play, Download, Filter } from 'lucide-react';
 import { MovieGenreType } from '@/types/MovieGenre';
 import getData from '@/utils/api';
 import { MovieType } from '@/types/MovieType';
 import Image from 'next/image';
+import { MovieActorType } from '@/types/MovieActorType';
+import { ActorsType } from '@/types/ActorsType';
+import { GenreType } from '@/types/GenreType';
 
 
-const MoviePage = async({ params }: { params: Promise<{ moviesId: string }> }) => {
+const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) => {
     const { moviesId } = await params;
-    const res = await getData({url:"movie"})
-    const movie: MovieType = await res.json()
-    const genreData = await getData({url:"movie_genre"})
-    const genreMovies = await genreData.json()
-    const movieGenreIds = genreMovies?.map((el:MovieGenreType) => {
+    const movie = await getData({ url: `movie/${moviesId}` })
+    const genres = await getData({ url: `genre` })
+    const genreMovies = await getData({ url: `movie_genre/${moviesId}` })
+    const movieGenreIds = genreMovies?.map((el: MovieGenreType) => {
         if (el.movie_id === moviesId) {
             return el.genre_id
         }
     })
-    const actor =  await getData({url:"actor"})
+
+    const genreNames = genres?.filter((el: GenreType) => movieGenreIds?.includes(el.id))
+    const actor = await getData({ url: `actor/${moviesId}` })
+    const actorMovies = await getData({ url: `movie_actor/${moviesId}` })
+    const movieActorIds = actorMovies?.map((el: MovieActorType) => {
+        if (el.movie_id === moviesId) {
+            return el.actor_id
+        }
+    })
     return (
         <main className="min-h-screen bg-[#0f0f0f] text-white">
             <div className="md:px-6 py-6">
@@ -88,14 +98,11 @@ const MoviePage = async({ params }: { params: Promise<{ moviesId: string }> }) =
                                     {/* Genres */}
                                     <div className="flex items-center gap-2 flex-wrap">
                                         <span className="text-gray-500 text-sm">Janrlar:</span>
-                                        {/* {movie?.genres.map((genre) => (
-                                            <span
-                                                key={genre}
-                                                className="border border-gray-600 text-gray-300 text-xs px-3 py-1 rounded-full hover:border-gray-400 cursor-pointer transition"
-                                            >
-                                                ♡ {genre}
-                                            </span>
-                                        ))} */}
+                                        {
+                                            genreNames?.map((el: GenreType) => {
+                                                return <h1 key={el.id}> {el?.name_uz} </h1>
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -104,19 +111,19 @@ const MoviePage = async({ params }: { params: Promise<{ moviesId: string }> }) =
                         {/* Cast */}
                         <div className="bg-[#1a1a1a] rounded-xl p-4 mb-4 overflow-x-auto">
                             <div className="flex gap-4 min-w-max">
-                                {/* {movie?.cast.map((actor) => (
-                                    <div key={actor.name} className="flex items-center gap-2">
-                                        <img
-                                            src={actor.img}
-                                            alt={actor.name}
+                                {actor?.map((actor: ActorsType) => (
+                                    <div key={actor.full_name} className="flex items-center gap-2">
+                                        <Image
+                                            src={actor.photo_url}
+                                            alt={actor.full_name}
                                             className="w-10 h-10 rounded-full object-cover bg-gray-700"
                                         />
                                         <div>
-                                            <p className="text-sm font-medium text-white">{actor.name}</p>
-                                            <p className="text-xs text-gray-400">{actor.role}</p>
+                                            <p className="text-sm font-medium text-white">{actor.full_name}</p>
+                                            <p className="text-xs text-gray-400">{actor.country}</p>
                                         </div>
                                     </div>
-                                ))} */}
+                                ))}
                             </div>
                         </div>
 
@@ -176,36 +183,35 @@ const MoviePage = async({ params }: { params: Promise<{ moviesId: string }> }) =
 
                     </div>
 
-                    {/* Sidebar - Recommendations */}
+                    {/* Sidebar - movieommendations */}
                     <div className="w-full lg:w-72 shrink-0">
                         <div className="flex items-center gap-2 text-white font-semibold mb-4">
                             <span className="text-[#aaff00]">✦</span>
                             Tavsiyalar
                         </div>
                         <div className="flex flex-col gap-3">
-                            {/* {movies.map((rec) => (
+                            {movie.map((movie: MovieType) => (
                                 <Link
-                                    key={rec.title}
+                                    key={movie.title_uz}
                                     href="#"
                                     className="flex items-center gap-3 bg-[#1a1a1a] hover:bg-[#222] transition rounded-xl p-2"
                                 >
-                                    <img
-                                        src={rec.img}
-                                        alt={rec.title}
+                                    <Image
+                                        src={movie.poster_url}
+                                        alt={movie.title_uz}
                                         className="w-16 h-20 object-cover rounded-lg bg-gray-700 shrink-0"
                                     />
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-sm text-white font-medium leading-snug line-clamp-2 mb-1">{rec.title}</p>
-                                        {rec.imdb && (
+                                        <p className="text-sm text-white font-medium leading-snug line-clamp-2 mb-1">{movie.title_uz}</p>
+                                        {movie.imdb_rating && (
                                             <span className="bg-[#f5c518] text-black text-xs font-bold px-1.5 py-0.5 rounded mr-1">
-                                                IMDb {rec.imdb}
+                                                IMDb {movie.imdb_rating}
                                             </span>
                                         )}
-                                        <p className="text-xs text-gray-500 mt-1">{rec.year} | {rec.duration}</p>
-                                        <p className="text-xs text-gray-500">{rec.genre}</p>
+                                        <p className="text-xs text-gray-500 mt-1">{movie.release_year} | {movie.duration_minutes}</p>
                                     </div>
                                 </Link>
-                            ))} */}
+                            ))}
                         </div>
                     </div>
 
