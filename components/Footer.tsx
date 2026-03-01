@@ -7,8 +7,9 @@ export default function Footer() {
     return (
         <footer className="bg-[#0f0f0f] text-gray-400 mt-10">
 
-            {/* Main Footer */}
-            <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-12 flex flex-col gap-10">
+           <div className='container mx-auto'>
+             {/* Main Footer */}
+            <div className="  px-4 md:px-6 py-12 flex flex-col gap-10">
 
                 {/* Top section */}
                 <div className="flex flex-col md:flex-row justify-between gap-10">
@@ -69,7 +70,7 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div className="border-t border-[#1a1a1a]">
-                <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className=" mx-auto px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-500 text-center md:text-left">
                         © 2021-2026 Freekino.net — Barcha huquqlar himoyalangan.
                     </p>
@@ -87,6 +88,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+           </div>
 
         </footer>
     );
