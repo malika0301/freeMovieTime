@@ -18,7 +18,7 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
       <div className="flex flex-col gap-1">
         {sorted.map((movie, index) => (
           <Link
-            href={`/movie/${movie.id}`}
+            href={`/moviesSingle/${movie.id}`}
             key={movie.id}
             className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
           >
