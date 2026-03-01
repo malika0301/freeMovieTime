@@ -1,17 +1,16 @@
 import { MovieType } from '@/types/MovieType'
-import Image from 'next/image'
 import Link from 'next/link'
-import { Trophy } from 'lucide-react'
+import { Tv2 } from 'lucide-react'
 
-const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
-  const sorted = [...(allKino || [])].sort((a, b) => b.view_count - a.view_count).slice(0, 5)
+const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
+  const sorted = [...(allMulti || [])].sort((a, b) => b.view_count - a.view_count).slice(0, 5)
 
   return (
     <div className="bg-[#1d1f1e] rounded-2xl p-5 flex-1 min-w-0">
       {/* Header */}
       <div className="flex items-center gap-2 mb-5">
-        <Trophy size={20} className="text-orange-400" />
-        <h2 className="text-white font-bold text-lg tracking-wide">TOP 5 Kinolar</h2>
+        <Tv2 size={20} className="text-orange-400" />
+        <h2 className="text-white font-bold text-lg tracking-wide">TOP 5 Seriallar</h2>
       </div>
 
       {/* List */}
@@ -82,4 +81,4 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
   )
 }
 
-export default TopMovies
+export default TopMultis

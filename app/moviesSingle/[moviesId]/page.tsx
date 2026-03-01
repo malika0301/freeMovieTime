@@ -15,14 +15,17 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
     const movie = await getData({ url: `movie/${moviesId}` })
     const genres = await getData({ url: `genre` })
     const actors = await getData({ url: `actor` })
+    const movies = await getData({ url: `movie` })
+    const genreMovies = await getData({ url:`movie_genre`});
 
-    const genreMovies = await getData({ url: `movie_genre/${moviesId}` })
+    console.log(genreMovies);
     const movieGenreIds = genreMovies?.map((el: MovieGenreType) => {
         if (el.movie_id === moviesId) {
             return el.genre_id
         }
     })
     const genreNames = genres?.filter((el: GenreType) => movieGenreIds?.includes(el.id))
+
     const actorMovies = await getData({ url: `movie_actor/${moviesId}` })
     const movieActorIds = actorMovies?.map((el: MovieActorType) => {
         if (el.movie_id === moviesId) {
@@ -194,7 +197,7 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
                             Tavsiyalar
                         </div>
                         <div className="flex flex-col gap-3">
-                            {movie.map((movie: MovieType) => (
+                            {movies.map((movie: MovieType) => (
                                 <Link
                                     key={movie.title_uz}
                                     href="#"
