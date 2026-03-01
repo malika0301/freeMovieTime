@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { MovieActorType } from '@/types/MovieActorType';
 import { ActorsType } from '@/types/ActorsType';
 import { GenreType } from '@/types/GenreType';
+import MoviePlayer from '@/components/MoviePlayer';
 
 
 const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) => {
@@ -131,11 +132,12 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
 
                         {/* Backdrop / Video Player area */}
                         <div className="bg-[#1a1a1a] rounded-xl overflow-hidden mb-4">
-                            <Image
-                                src={movie?.poster_url}
-                                alt="backdrop"
-                                className="w-full h-64 md:h-96 object-cover"
-                            />
+
+                            <MoviePlayer url={movie?.video_url}
+                            subtitles={[
+                                { label: "O'zbek", src: "/subs/uz.vtt", srcLang: "uz" },
+                                { label: "Русский", src: "/subs/ru.vtt", srcLang: "ru" }
+                            ]}/>
                         </div>
 
                         {/* Like / Dislike + Buttons */}
