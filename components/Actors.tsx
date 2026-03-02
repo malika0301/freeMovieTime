@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Actorscomponentimges from "./Actorscomponentimges";
 import Link from "next/link"
+import getData from "@/utils/api";
 
 
 
@@ -11,13 +12,7 @@ const Actors = () => {
  
   useEffect(() => {
    async function fetchData(){
-     const res = await fetch( "https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor" ,
-      {
-        next:{
-          revalidate : 3600
-        }
-      }
-      );
+     const res = await getData({url:"actor"})
       const data = await res.json();
       
       setActorlar(data);
