@@ -38,7 +38,7 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
             {/* Poster */}
             <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e]">
               {movie.poster_url ? (
-                <img
+                <Image
                   src={movie.poster_url}
                   alt={movie.title_uz}
                   className="w-full h-full object-cover"

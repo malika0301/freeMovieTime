@@ -1,5 +1,4 @@
 
-import { log } from 'console'
 import TopMovies from './TopMovies'
 import { MovieCategoryType } from '@/types/MovieCategoryType'
 import { MovieType } from '@/types/MovieType'
@@ -15,8 +14,6 @@ const Top = async() => {
 
   //Movie
   const movies = await getData({url:'movie'})
-
-console.log(categoryMovie);
 
   
   //Kino

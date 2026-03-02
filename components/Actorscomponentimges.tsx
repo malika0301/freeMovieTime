@@ -18,33 +18,33 @@ import Link from 'next/link';
 
 
 
-const Actorscomponentimges = ({actorlar} : {actorlar:ActorsType[]}) => {
+const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
     console.log(actorlar);
-    
- return(
-    <>
 
-             <Swiper
-                 slidesPerView="auto"
-                 spaceBetween={20}
-                 pagination={{
-                     clickable: true,
-                 }}
-                 modules={[Pagination]}
-                 className="mySwiper"
-             >
+    return (
+        <>
+
+            <Swiper
+                slidesPerView="auto"
+                spaceBetween={20}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+            >
                 {
-                 actorlar?.map((el) => {
+                    actorlar?.map((el) => {
                         return <SwiperSlide
+                            key={el.id}
 
                             className="!w-[250px] w-full ">
 
-                            <Link href={`/actors/${el?.id}`} className=" bg-black flex items-center justify-center">
-
+                            <Link href={`/actors/${el?.id}`} className="flex items-center justify-center">
                                 <div
                                     className="
           w-[260px]
-          bg-gradient-to-b from-gray-900 to-gray-950
+          bg-gradient-to-b bg-[#1d1f1e] to-gray-950
           border border-gray-700
           rounded-3xl
           p-4
@@ -79,7 +79,7 @@ const Actorscomponentimges = ({actorlar} : {actorlar:ActorsType[]}) => {
                                         </h2>
                                         <p className="text-gray-400 text-sm mt-1">
                                             {
-                                            el?.country
+                                                el?.country
                                             }
                                         </p>
                                     </div>
@@ -87,16 +87,16 @@ const Actorscomponentimges = ({actorlar} : {actorlar:ActorsType[]}) => {
 
                             </Link>
 
-                          
+
                         </SwiperSlide>
                     })
                 }
 
-             </Swiper>
-  
-       
-       
-    </>
- )
+            </Swiper>
+
+
+
+        </>
+    )
 }
 export default Actorscomponentimges

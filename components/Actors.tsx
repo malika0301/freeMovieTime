@@ -19,7 +19,6 @@ const Actors = () => {
       }
       );
       const data = await res.json();
-      console.log(data);
       
       setActorlar(data);
     };
@@ -28,11 +27,11 @@ const Actors = () => {
   }, []);
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mt-4 mb-8">
 
         {/* Left Side */}
         <div className="flex items-center gap-2">
-          <div className="bg-black p-2 rounded-xl">
+          <div className="p-2 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -52,12 +51,12 @@ const Actors = () => {
           href="/actors"
           className="
     inline-flex items-center gap-2
-    bg-gray-900
+    bg-[#1d1f1e]
     text-gray-300
     hover:text-white
     px-5 py-2
     rounded-xl
-    border border-gray-700
+    border border-gray-800
     hover:border-white
     hover:shadow-2xl
     transition duration-300
