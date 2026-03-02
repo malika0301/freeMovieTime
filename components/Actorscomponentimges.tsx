@@ -19,7 +19,6 @@ import Link from 'next/link';
 
 
 const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
-    console.log(actorlar);
 
     return (
         <>
@@ -42,8 +41,7 @@ const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
 
                             <Link href={`/actors/${el?.id}`} className="flex items-center justify-center">
                                 <div
-                                    className="
-          w-[260px]
+                                    className=" w-[260px]
           bg-gradient-to-b bg-[#1d1f1e] to-gray-950
           border border-gray-700
           rounded-3xl
