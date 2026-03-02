@@ -1,5 +1,9 @@
 export interface MovieType {
+<<<<<<< HEAD
     id: string,
+=======
+    id:string
+>>>>>>> cf09e4de898d1047e33c0f3f912aaecb9068ff10
     title_uz: string,
     title_ru: string,
     title_en: string,
