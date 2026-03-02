@@ -10,14 +10,14 @@ const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
       {/* Header */}
       <div className="flex items-center gap-2 mb-5">
         <Tv2 size={20} className="text-orange-400" />
-        <h2 className="text-white font-bold text-lg tracking-wide">TOP 5 Seriallar</h2>
+        <h2 className="text-white font-bold text-lg tracking-wide">TOP 5 Multfilmlar</h2>
       </div>
 
       {/* List */}
       <div className="flex flex-col gap-1">
         {sorted.map((movie, index) => (
           <Link
-            href={`/movie/${movie.id}`}
+            href={`/cartoonSingle/${movie.id}`}
             key={movie.id}
             className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
           >
