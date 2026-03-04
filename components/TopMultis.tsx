@@ -1,6 +1,7 @@
 import { MovieType } from '@/types/MovieType'
 import Link from 'next/link'
 import { Tv2 } from 'lucide-react'
+import Image from 'next/image'
 
 const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
   const sorted = [...(allMulti || [])].sort((a, b) => b.view_count - a.view_count).slice(0, 5)
@@ -37,7 +38,7 @@ const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
             {/* Poster */}
             <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e]">
               {movie.poster_url ? (
-                <img
+                <Image
                   src={movie.poster_url}
                   alt={movie.title_uz}
                   className="w-full h-full object-cover"

@@ -12,9 +12,7 @@ const Actors = () => {
  
   useEffect(() => {
    async function fetchData(){
-     const res = await getData({url:"actor"})
-      const data = await res.json();
-      
+     const data = await getData({url:"actor"})
       setActorlar(data);
     };
 
