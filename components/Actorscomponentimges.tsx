@@ -28,14 +28,14 @@ const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
       >
         {actorlar?.map((el) => {
           return (
-            <SwiperSlide key={el.id} className="!w-[250px] w-full ">
+            <SwiperSlide key={el.id} className="w-62.5! ">
               <Link
                 href={`/actors/${el?.id}`}
                 className="flex items-center justify-center"
               >
                 <div
-                  className=" w-[260px]
-          bg-gradient-to-b bg-[#1d1f1e] to-gray-950
+                  className=" w-65
+          bg-linear-to-b bg-[#1d1f1e] to-gray-950
           border border-gray-700
           rounded-3xl
           p-4
@@ -47,7 +47,7 @@ const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
         "
                 >
                   {/* Image */}
-                  <div className="relative w-full h-[320px] rounded-2xl overflow-hidden">
+                  <div className="relative w-full h-80 rounded-2xl overflow-hidden">
                     <Image
                       src={el?.photo_url} // rasm yo'lini shu yerga qo'yasiz
                       alt="Afra Saraçoğlu"
@@ -59,8 +59,8 @@ const Actorscomponentimges = ({ actorlar }: { actorlar: ActorsType[] }) => {
             "
                     />
 
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    {/* linear overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent"></div>
                   </div>
 
                   {/* Text */}
