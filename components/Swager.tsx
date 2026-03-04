@@ -1,9 +1,13 @@
-import React from 'react'
+import getData from "@/utils/api"
+import Swagercards from "./SwagerCards"
 
-const Swager = () => {
+const Swager = async () => {
+  const moviecard = await getData({url:"movie"})
+
   return (
-    <div className='text-white'>Swager</div>
+    <div>
+      <Swagercards allmoviecard={moviecard} />
+    </div>
   )
 }
-
 export default Swager

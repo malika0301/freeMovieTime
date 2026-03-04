@@ -31,11 +31,6 @@ const Top = async () => {
   const category = await categoryData.json()
   const categoryMovie = await categoryMoviesData.json()
 
-console.log(movies);
-console.log(category);
-console.log(categoryMovie);
-
- 
   
   const kinoId = category[0]?.id
 

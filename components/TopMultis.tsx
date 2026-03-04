@@ -3,13 +3,6 @@ import Link from 'next/link'
 import { Tv2 } from 'lucide-react'
 import Image from 'next/image'
 
-const rankStyle = (index: number): string => {
-  if (index === 0) return 'bg-yellow-500 text-black'   // 🥇 1-o'rin
-  if (index === 1) return 'bg-gray-400 text-black'     // 🥈 2-o'rin
-  if (index === 2) return 'bg-orange-500 text-white'   // 🥉 3-o'rin
-  return 'bg-[#2a2a3e] text-gray-400'
-}
-
 const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
   const sorted = [...(allMulti || [])]
     .sort((a, b) => b.view_count - a.view_count)

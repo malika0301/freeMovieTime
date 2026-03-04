@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { MovieActorType } from '@/types/MovieActorType';
 import { ActorsType } from '@/types/ActorsType';
 import { GenreType } from '@/types/GenreType';
+import MoviePlayer from '@/components/MoviePlayer';
 
 
 const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) => {
@@ -14,14 +15,17 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
     const movie = await getData({ url: `movie/${moviesId}` })
     const genres = await getData({ url: `genre` })
     const actors = await getData({ url: `actor` })
+    const movies = await getData({ url: `movie` })
+    const genreMovies = await getData({ url:`movie_genre`});
 
-    const genreMovies = await getData({ url: `movie_genre/${moviesId}` })
+    console.log(genreMovies);
     const movieGenreIds = genreMovies?.map((el: MovieGenreType) => {
         if (el.movie_id === moviesId) {
             return el.genre_id
         }
     })
     const genreNames = genres?.filter((el: GenreType) => movieGenreIds?.includes(el.id))
+
     const actorMovies = await getData({ url: `movie_actor/${moviesId}` })
     const movieActorIds = actorMovies?.map((el: MovieActorType) => {
         if (el.movie_id === moviesId) {
@@ -131,11 +135,12 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
 
                         {/* Backdrop / Video Player area */}
                         <div className="bg-[#1a1a1a] rounded-xl overflow-hidden mb-4">
-                            <Image
-                                src={movie?.poster_url}
-                                alt="backdrop"
-                                className="w-full h-64 md:h-96 object-cover"
-                            />
+
+                            <MoviePlayer url={movie?.video_url}
+                            subtitles={[
+                                { label: "O'zbek", src: "/subs/uz.vtt", srcLang: "uz" },
+                                { label: "Русский", src: "/subs/ru.vtt", srcLang: "ru" }
+                            ]}/>
                         </div>
 
                         {/* Like / Dislike + Buttons */}
@@ -192,7 +197,7 @@ const MoviePage = async ({ params }: { params: Promise<{ moviesId: string }> }) 
                             Tavsiyalar
                         </div>
                         <div className="flex flex-col gap-3">
-                            {movie.map((movie: MovieType) => (
+                            {movies.map((movie: MovieType) => (
                                 <Link
                                     key={movie.title_uz}
                                     href="#"
