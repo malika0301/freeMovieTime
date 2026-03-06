@@ -10,6 +10,12 @@ const Top = async () => {
   const category = await getData({url:"category"})
    const movies = await getData({url:"movie"})
 
+<<<<<<< HEAD
+=======
+  const category = await categoryData.json()
+  const categoryMovie = await categoryMoviesData.json()
+
+>>>>>>> dcf7733bcc003a23198e96d39920c538a167f4ae
   
   const kinoId = category[0]?.id
 
