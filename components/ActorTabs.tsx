@@ -49,9 +49,8 @@ const ActorTabs = ({ filterdMovies , singledata }:{filterdMovies:MovieType[] , s
             {activeTab === "series" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {filterdMovies?.map((movie) => (
-                        <div className="hover:scale-105 overflow-hidden">
+                        <div key={movie.id} className="hover:scale-105 overflow-hidden">
                             <div className="relative group w-[300px] h-[400px] rounded-2xl overflow-hidden border border-gray-400">
-                                {/* Rasm */}
                                 <Image
                                     src={movie.poster_url}
                                     alt={movie.title_uz}
@@ -59,8 +58,6 @@ const ActorTabs = ({ filterdMovies , singledata }:{filterdMovies:MovieType[] , s
                                     height={400}
                                     className="rounded-2xl w-full h-full object-cover duration-300 transform group-hover:scale-110 group-hover:blur-sm"
                                 />
-
-                                {/* Play icon */}
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -72,21 +69,18 @@ const ActorTabs = ({ filterdMovies , singledata }:{filterdMovies:MovieType[] , s
                                     </svg>
                                 </div>
                             </div>
-
-                            {/* Movie title */}
                             <h3 className="text-lg font-semibold mt-2">{movie.title_uz}</h3>
                             <p className="text-sm text-gray-500 font-semibold mt-1">
-                                <span className="text-gray-500 text-sm">
-                                    Jangari
-                                    •
-                                </span>
-                                {movie.updated_at}</p>
+                                <span className="text-gray-500 text-sm">Jangari •</span>
+                                {movie.updated_at}
+                            </p>
                         </div>
                     ))}
                 </div>
             )}
-        </div>
-    );
+              
+            </div>);
 };
+        
 
 export default ActorTabs;

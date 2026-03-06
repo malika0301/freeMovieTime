@@ -2,7 +2,6 @@ import { MovieType } from '@/types/MovieType'
 import Link from 'next/link'
 import { Tv2 } from 'lucide-react'
 import Image from 'next/image'
-<<<<<<< HEAD
 
 const rankStyle = (index: number): string => {
   if (index === 0) return 'bg-yellow-500 text-black'   // 🥇 1-o'rin
@@ -10,8 +9,6 @@ const rankStyle = (index: number): string => {
   if (index === 2) return 'bg-orange-500 text-white'   // 🥉 3-o'rin
   return 'bg-[#2a2a3e] text-gray-400'
 }
-=======
->>>>>>> dcf7733bcc003a23198e96d39920c538a167f4ae
 
 const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
   const sorted = [...(allMulti || [])]
