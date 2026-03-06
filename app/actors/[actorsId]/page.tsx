@@ -2,6 +2,7 @@
 import ActorTabs from "@/components/ActorTabs";
 import { MovieActorType } from "@/types/MovieActorType";
 import { MovieType } from "@/types/MovieType";
+import getData from "@/utils/api";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,14 +10,7 @@ import Link from "next/link";
 const ActorsSinglePage = async ({ params }: { params: Promise<{ actorsId: string }> }) => {
   const { actorsId } = await params;
   //MOVIE
-  const movie = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie` , 
-    {
-      next: {
-        revalidate: 3600
-      }
-    }
-  )
-  const singlemovie = await movie.json()
+  const singlemovie = await getData({url:"/movie"})
   console.log(singlemovie);
 
   //MOVIE ACTORS

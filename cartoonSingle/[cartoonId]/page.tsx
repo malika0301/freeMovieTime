@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { MovieActorType } from '@/types/MovieActorType';
 import { ActorsType } from '@/types/ActorsType';
 import { GenreType } from '@/types/GenreType';
+import MoviePlayer from '@/components/MoviePlayer';
+import WatchButton from '@/components/WatchButton';
 
 const MoviePage = async ({ params }: { params: Promise<{ cartoonId: string }> }) => {
     const { cartoonId } = await params;
@@ -86,10 +88,8 @@ const MoviePage = async ({ params }: { params: Promise<{ cartoonId: string }> })
                                     <p className="text-gray-400 text-sm mb-4">Uzbek tilida • HD • Online tomosha</p>
 
                                     {/* Watch Button */}
-                                    <button className="flex items-center gap-2 bg-white text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-gray-200 transition mb-5">
-                                        <Play size={16} fill="black" />
-                                        Tomosha qilish
-                                    </button>
+                                    <WatchButton />
+
 
                                     {/* Meta */}
                                     <div className="flex flex-wrap gap-6 text-sm mb-4">
@@ -149,14 +149,14 @@ const MoviePage = async ({ params }: { params: Promise<{ cartoonId: string }> })
                             </div>
                         </div>
 
-                        {/* Backdrop */}
-                        <div className="bg-[#1a1a1a] rounded-xl overflow-hidden mb-4">
-                            <Image
-                                src={movie?.poster_url}
-                                alt="backdrop"
-                                width={1280}
-                                height={384}
-                                className="w-full h-64 md:h-96 object-cover"
+                        {/* Video Player */}
+                        <div id="player" className="bg-[#1a1a1a] h-[470px] rounded-xl overflow-hidden mb-4">
+                            <MoviePlayer
+                                url={movie?.video_url}
+                                subtitles={[
+                                    { label: "O'zbek", src: "/subs/uz.vtt", srcLang: "uz" },
+                                    { label: "Русский", src: "/subs/ru.vtt", srcLang: "ru" }
+                                ]}
                             />
                         </div>
 

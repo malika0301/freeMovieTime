@@ -2,6 +2,7 @@
 
 import { MovieType } from "@/types/MovieType"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 interface Props {
@@ -32,8 +33,7 @@ const Swagercards = ({ allmoviecard }: Props) => {
                 <div className="relative">
 
                     {/* 2 ta banner */}
-                    <div 
-                    className="grid grid-cols-2 gap-6 h-120">
+                    <div className="grid grid-cols-2 gap-6 h-120">
 
                         {[0, 1].map((offset) => {
                             const movie =
@@ -44,44 +44,47 @@ const Swagercards = ({ allmoviecard }: Props) => {
                                     key={movie.id}
                                     className="relative rounded-3xl overflow-hidden group cursor-pointer"
                                 >
-                                    {/* IMAGE */}
-                                    <Image
-                                        src={movie.poster_url}
-                                        alt={movie.title_en}
-                                        fill
-                                        quality={100}
-                                        sizes="50vw"
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
+                                    <Link
+                                        href={`/moviesSingle/${movie.id}`}
+                                        key={movie.id}> {/* IMAGE */}
+                                        <Image
+                                            src={movie.poster_url}
+                                            alt={movie.title_en}
+                                            fill
+                                            quality={100}
+                                            sizes="50vw"
+                                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                        />
+                                        {/* Gradient */}
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
 
-                                    {/* Gradient */}
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
-
-                                    {/* IMDb badge */}
-                                    <div className="absolute top-5 right-5">
-                                        <span className="bg-yellow-400 text-black font-bold text-xs px-3 py-1 rounded-full shadow-md">
-                                            IMDb {movie?.imdb_rating}
-                                        </span>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="absolute bottom-8 left-8 text-white">
-                                        <h2 className="text-3xl font-bold mb-4 drop-shadow-xl">
-                                            {movie?.title_en}
-                                        </h2>
-
-                                        <div className="flex gap-3 flex-wrap">
-                                            <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
-                                                {movie?.language}
-                                            </span>
-                                            <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
-                                                {movie?.release_year || "2025"}
-                                            </span>
-                                            <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
-                                                {movie?.country}
+                                        {/* IMDb badge */}
+                                        <div className="absolute top-5 right-5">
+                                            <span className="bg-yellow-400 text-black font-bold text-xs px-3 py-1 rounded-full shadow-md">
+                                                IMDb {movie?.imdb_rating}
                                             </span>
                                         </div>
-                                    </div>
+
+                                        {/* Content */}
+                                        <div className="absolute bottom-8 left-8 text-white">
+                                            <h2 className="text-3xl font-bold mb-4 drop-shadow-xl">
+                                                {movie?.title_en}
+                                            </h2>
+
+                                            <div className="flex gap-3 flex-wrap">
+                                                <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
+                                                    {movie?.language}
+                                                </span>
+                                                <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
+                                                    {movie?.release_year || "2025"}
+                                                </span>
+                                                <span className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 rounded-full text-sm">
+                                                    {movie?.country}
+                                                </span>
+                                            </div>
+                                        </div></Link>
+
+                                    
                                 </div>
                             )
                         })}

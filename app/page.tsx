@@ -1,5 +1,4 @@
 import Actors from "@/components/Actors"
-import Ganres from "@/components/Ganres"
 import HeroText from "@/components/Hero"
 import NewTrMovies from "@/components/NewTrMovies"
 import Swager from "@/components/Swager"
@@ -10,9 +9,8 @@ const HomePage = () => {
     <main>
       <div>
       <Swager />
-      <Ganres />
-      <NewTrMovies />
       <Top />
+      <NewTrMovies/>
       <Actors />
       <HeroText />
     </div>

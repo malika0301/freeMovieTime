@@ -4,11 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { MovieType } from "@/types/MovieType";
 import { ActorsType } from "@/types/ActorsType";
+import Link from "next/link";
+import getData from "@/utils/api";
 
 interface Props {
     biography: string;
     movies: MovieType[];
 }
+
+const movie = await getData({ url: "/movie" })
 
 const ActorTabs = ({ filterdMovies , singledata }:{filterdMovies:MovieType[] , singledata:ActorsType}) => {
     const [activeTab, setActiveTab] = useState<"bio" | "series">("bio");
@@ -46,38 +50,40 @@ const ActorTabs = ({ filterdMovies , singledata }:{filterdMovies:MovieType[] , s
             )}
 
             {/* SERIES */}
-            {activeTab === "series" && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {filterdMovies?.map((movie) => (
-                        <div key={movie.id} className="hover:scale-105 overflow-hidden">
-                            <div className="relative group w-[300px] h-[400px] rounded-2xl overflow-hidden border border-gray-400">
-                                <Image
-                                    src={movie.poster_url}
-                                    alt={movie.title_uz}
-                                    width={300}
-                                    height={400}
-                                    className="rounded-2xl w-full h-full object-cover duration-300 transform group-hover:scale-110 group-hover:blur-sm"
-                                />
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-16 w-16 text-white drop-shadow-lg"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M3 22V2l18 10-18 10z" />
-                                    </svg>
+            <Link href={`/moviesSingle/${movie.id}`}
+                key={movie.id} >
+                {activeTab === "series" && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {filterdMovies?.map((movie) => (
+                            <div key={movie.id} className="hover:scale-105 overflow-hidden">
+                                <div className="relative group w-[300px] h-[400px] rounded-2xl overflow-hidden border border-gray-400">
+                                    <Image
+                                        src={movie.poster_url}
+                                        alt={movie.title_uz}
+                                        width={300}
+                                        height={400}
+                                        className="rounded-2xl w-full h-full object-cover duration-300 transform group-hover:scale-110 group-hover:blur-sm"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-16 w-16 text-white drop-shadow-lg"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M3 22V2l18 10-18 10z" />
+                                        </svg>
+                                    </div>
                                 </div>
+                                <h3 className="text-lg font-semibold mt-2">{movie.title_uz}</h3>
+                                <p className="text-sm text-gray-500 font-semibold mt-1">
+                                    <span className="text-gray-500 text-sm">Jangari •</span>
+                                    {movie.updated_at}
+                                </p>
                             </div>
-                            <h3 className="text-lg font-semibold mt-2">{movie.title_uz}</h3>
-                            <p className="text-sm text-gray-500 font-semibold mt-1">
-                                <span className="text-gray-500 text-sm">Jangari •</span>
-                                {movie.updated_at}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}</Link>
               
             </div>);
 };
