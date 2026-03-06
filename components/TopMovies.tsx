@@ -3,8 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Trophy } from 'lucide-react'
 
+const rankStyle = (index: number): string => {
+  if (index === 0) return 'bg-yellow-500 text-black'
+  if (index === 1) return 'bg-gray-400 text-black'
+  if (index === 2) return 'bg-orange-500 text-white'
+  return 'bg-[#2a2a3e] text-gray-400'
+}
+
 const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
-  const sorted = [...(allKino || [])].sort((a, b) => b.view_count - a.view_count).slice(0, 5)
+  const sorted = [...(allKino || [])]
+    .sort((a, b) => b.view_count - a.view_count)
+    .slice(0, 5)
 
   return (
     <div className="bg-[#1d1f1e] rounded-2xl p-5 flex-1 min-w-0">
@@ -14,7 +23,6 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
         <h2 className="text-white font-bold text-lg tracking-wide">TOP 5 Kinolar</h2>
       </div>
 
-      {/* List */}
       <div className="flex flex-col gap-1">
         {sorted.map((movie, index) => (
           <Link
@@ -22,25 +30,17 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
             key={movie.id}
             className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
           >
-            {/* Rank */}
-            <div
-              className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${
-                index === 0
-                  ? 'bg-orange-500 text-white'
-                  : index === 2
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-[#2a2a3e] text-gray-400'
-              }`}
-            >
+            <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${rankStyle(index)}`}>
               {index + 1}
             </div>
 
-            {/* Poster */}
-            <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e]">
+            <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e] relative">
               {movie.poster_url ? (
                 <Image
                   src={movie.poster_url}
                   alt={movie.title_uz}
+                  width={48}
+                  height={64}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -48,7 +48,6 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
               )}
             </div>
 
-            {/* Info */}
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium truncate group-hover:text-orange-400 transition-colors">
                 {movie.title_uz}
@@ -63,15 +62,10 @@ const TopMovies = ({ allKino }: { allKino: MovieType[] }) => {
               </div>
             </div>
 
-            {/* Arrow */}
             <svg
               className="text-gray-600 group-hover:text-gray-400 transition-colors shrink-0"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
+              width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2"
             >
               <path d="M9 18l6-6-6-6" />
             </svg>

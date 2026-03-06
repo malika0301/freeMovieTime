@@ -3,8 +3,17 @@ import Link from 'next/link'
 import { Tv2 } from 'lucide-react'
 import Image from 'next/image'
 
+const rankStyle = (index: number): string => {
+  if (index === 0) return 'bg-yellow-500 text-black'   // 🥇 1-o'rin
+  if (index === 1) return 'bg-gray-400 text-black'     // 🥈 2-o'rin
+  if (index === 2) return 'bg-orange-500 text-white'   // 🥉 3-o'rin
+  return 'bg-[#2a2a3e] text-gray-400'
+}
+
 const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
-  const sorted = [...(allMulti || [])].sort((a, b) => b.view_count - a.view_count).slice(0, 5)
+  const sorted = [...(allMulti || [])]
+    .sort((a, b) => b.view_count - a.view_count)
+    .slice(0, 5)
 
   return (
     <div className="bg-[#1d1f1e] rounded-2xl p-5 flex-1 min-w-0">
@@ -16,31 +25,27 @@ const TopMultis = ({ allMulti }: { allMulti: MovieType[] }) => {
 
       {/* List */}
       <div className="flex flex-col gap-1">
-        {sorted.map((movie, index) => (
+        {sorted?.map((movie, index) => (
           <Link
-            href={`/cartoonSingle/${movie.id}`}
-            key={movie.id}
+            href={`/moviesSingle/${movie.id}`}
+            key={movie?.id}
             className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
           >
             {/* Rank */}
             <div
-              className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${
-                index === 0
-                  ? 'bg-orange-500 text-white'
-                  : index === 2
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-[#2a2a3e] text-gray-400'
-              }`}
+              className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${rankStyle(index)}`}
             >
               {index + 1}
             </div>
 
             {/* Poster */}
-            <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e]">
+            <div className="w-12 h-16 rounded-lg overflow-hidden shrink-0 bg-[#2a2a3e] relative">
               {movie.poster_url ? (
                 <Image
                   src={movie.poster_url}
                   alt={movie.title_uz}
+                  width={48}
+                  height={64}
                   className="w-full h-full object-cover"
                 />
               ) : (

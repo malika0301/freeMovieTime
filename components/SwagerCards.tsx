@@ -2,7 +2,7 @@
 
 import { MovieType } from "@/types/MovieType"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 interface Props {
     allmoviecard: MovieType[]
@@ -10,8 +10,11 @@ interface Props {
 
 const Swagercards = ({ allmoviecard }: Props) => {
     const [current, setCurrent] = useState(0)
+    const isClient = useRef(false)
 
     useEffect(() => {
+        isClient.current = true
+
         if (!allmoviecard.length) return
 
         const interval = setInterval(() => {
@@ -24,12 +27,13 @@ const Swagercards = ({ allmoviecard }: Props) => {
     if (!allmoviecard.length) return null
 
     return (
-        <div className="w-full bg-[#0f0f0f] px-6 py-8">
+        <div className="w-full bg-[#0f0f0f] px-6 py-8" suppressHydrationWarning>
             <div className="container mx-auto">
                 <div className="relative">
 
                     {/* 2 ta banner */}
-                    <div className="grid grid-cols-2 gap-6 h-[480px]">
+                    <div 
+                    className="grid grid-cols-2 gap-6 h-120">
 
                         {[0, 1].map((offset) => {
                             const movie =
@@ -51,7 +55,7 @@ const Swagercards = ({ allmoviecard }: Props) => {
                                     />
 
                                     {/* Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent" />
 
                                     {/* IMDb badge */}
                                     <div className="absolute top-5 right-5">
@@ -83,15 +87,28 @@ const Swagercards = ({ allmoviecard }: Props) => {
                         })}
 
                     </div>
-                    {/* Chap tugma (faqat dizayn) */}
-                    <div className="absolute left-[-10px] top-1/2 -translate-y-1/2 z-20">
+
+                    {/* Chap tugma */}
+                    <div
+                        className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-20"
+                        onClick={() =>
+                            setCurrent((prev) =>
+                                prev === 0 ? allmoviecard.length - 1 : prev - 1
+                            )
+                        }
+                    >
                         <div className="w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-full border border-white/20 cursor-pointer hover:bg-white/20 transition">
                             ‹
                         </div>
                     </div>
 
-                    {/* O‘ng tugma (faqat dizayn) */}
-                    <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 z-20">
+                    {/* O'ng tugma */}
+                    <div
+                        className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-20"
+                        onClick={() =>
+                            setCurrent((prev) => (prev + 1) % allmoviecard.length)
+                        }
+                    >
                         <div className="w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-full border border-white/20 cursor-pointer hover:bg-white/20 transition">
                             ›
                         </div>

@@ -1,15 +1,11 @@
 import { ActorsType } from "@/types/ActorsType";
+import getData from "@/utils/api";
+import Image from "next/image";
 
 
 
 const ActorCards = async () => {
-    const actorcards = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor`, {
-        next: {
-            revalidate: 3600
-        }
-    })
-    const actorcardall = await actorcards.json()
-    console.log(actorcardall);
+    const actorcardall = await getData({url:"actor"})
 
     return (
         <div className="p-7">
@@ -22,15 +18,15 @@ const ActorCards = async () => {
                         key={actor.id}
                         className="relative w-54 h-74 rounded-xl overflow-hidden shadow-lg group p-3 border-2 border-gray-600 hover:border-gray-400 cursor-pointer"
                     >
-                        <img
+                        <Image
                             src={actor?.photo_url}
                             alt={actor?.full_name}
                             className="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105 rounded-2xl"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
 
-                        <div className="absolute bottom-4 left-0 right-0 px-3 py-[1px]">
+                        <div className="absolute bottom-4 left-0 right-0 px-3 py-px">
                             <p className="text-white text-sm font-semibold ">
                                 {actor?.full_name}
                             </p>
