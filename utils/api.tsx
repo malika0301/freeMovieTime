@@ -1,6 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 const getData = async ({ url }: { url: string }) => {
-    const data = await fetch(`${BASE_URL}/${url}`, { next: { revalidate: 120 } })
+    const data = await fetch(`${"https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL"}/${url}`, { next: { revalidate: 120 } })
     const allData = await data.json();
     return allData
 }
